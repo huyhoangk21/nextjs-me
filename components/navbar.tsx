@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 import { useMobileNav } from '../hooks/useMobileNav';
 import Menu from './menu';
@@ -9,7 +10,7 @@ const Navbar = () => {
   return (
     <div className='border-b'>
       <nav className='custom-container flex justify-between items-center h-full'>
-        <div>Hoang Le</div>
+        <Link href='/'>Hoang Le</Link>
         <MobileMenu />
         <Menu />
         <div className='text-lg sm:hidden' onClick={toggleMenu}>
