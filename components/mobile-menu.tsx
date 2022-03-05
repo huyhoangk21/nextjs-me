@@ -4,7 +4,7 @@ import { BsFillSunFill } from 'react-icons/bs';
 import { useMobileNav } from '../hooks/useMobileNav';
 
 const MobileMenu = () => {
-  const { open } = useMobileNav();
+  const { open, toggleMenu } = useMobileNav();
 
   return (
     <div
@@ -14,10 +14,14 @@ const MobileMenu = () => {
     >
       <ul className='flex flex-col font-semibold sm:flex-row'>
         <Link href='/blogs' passHref>
-          <li className='pt-3 custom-link'>Blog</li>
+          <li className='pt-3 custom-link' onClick={toggleMenu(false)}>
+            Blog
+          </li>
         </Link>
         <Link href='/contact' passHref>
-          <li className='py-3 custom-link'>Contact</li>
+          <li className='py-3 custom-link' onClick={toggleMenu(false)}>
+            Contact
+          </li>
         </Link>
       </ul>
       <hr />

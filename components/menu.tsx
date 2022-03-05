@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 import { BsFillSunFill } from 'react-icons/bs';
+import { useMobileNav } from '../hooks/useMobileNav';
 
 const Menu = () => {
   return (

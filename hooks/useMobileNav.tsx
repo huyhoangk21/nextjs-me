@@ -2,7 +2,7 @@ import React, { createContext, ReactNode, useContext, useState } from 'react';
 
 type MobileNavContextType = {
   open: boolean;
-  toggleMenu: () => void;
+  toggleMenu: (value: boolean) => () => void;
 };
 
 const MobileNavContext = createContext<MobileNavContextType>(null!);
@@ -10,8 +10,8 @@ const MobileNavContext = createContext<MobileNavContextType>(null!);
 export const MobileNavProvider = ({ children }: { children: ReactNode }) => {
   const [open, setOpen] = useState<boolean>(false);
 
-  const toggleMenu = () => {
-    setOpen(!open);
+  const toggleMenu = (value: boolean) => () => {
+    setOpen(value);
   };
 
   const value = { open, toggleMenu };

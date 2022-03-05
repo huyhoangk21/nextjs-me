@@ -10,10 +10,12 @@ const Navbar = () => {
   return (
     <div className='border-b'>
       <nav className='custom-container flex justify-between items-center h-full'>
-        <Link href='/'>Hoang Le</Link>
+        <Link href='/'>
+          <div onClick={toggleMenu(false)}>Hoang Le</div>
+        </Link>
         <MobileMenu />
         <Menu />
-        <div className='text-lg sm:hidden' onClick={toggleMenu}>
+        <div className='text-lg sm:hidden' onClick={toggleMenu(!open)}>
           {open ? <AiOutlineClose /> : <AiOutlineMenu />}
         </div>
       </nav>
