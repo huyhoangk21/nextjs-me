@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 import { BsFillSunFill } from 'react-icons/bs';
 import { useMobileNav } from '../hooks/useMobileNav';
@@ -9,11 +10,15 @@ const MobileMenu = () => {
     <div
       className={`${
         !open && 'hidden'
-      } sm:hidden absolute top-16 bottom-0 inset-x-0 px-4 bg-white`}
+      } sm:hidden absolute top-16 bottom-0 inset-x-0 px-4 bg-white z-50`}
     >
       <ul className='flex flex-col font-semibold sm:flex-row'>
-        <li className='pt-3'>Blog</li>
-        <li className='py-3'>Contact</li>
+        <Link href='/blogs' passHref>
+          <li className='pt-3 custom-link'>Blog</li>
+        </Link>
+        <Link href='/contact' passHref>
+          <li className='py-3 custom-link'>Contact</li>
+        </Link>
       </ul>
       <hr />
       <div className='pt-3 flex justify-between items-center'>
