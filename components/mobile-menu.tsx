@@ -9,7 +9,7 @@ const MobileMenu = () => {
     <div
       className={`${
         !open && 'hidden'
-      } absolute top-16 bottom-0 inset-x-0 px-4 sm:hidden bg-white`}
+      } sm:hidden absolute top-16 bottom-0 inset-x-0 px-4 bg-white`}
     >
       <ul className='flex flex-col font-semibold sm:flex-row'>
         <li className='pt-3'>Blog</li>
