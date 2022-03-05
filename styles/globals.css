@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.custom-container {
+  @apply container mx-auto px-4 lg:px-20 xl:px-40;
+}
+
 html,
 body {
   padding: 0;
