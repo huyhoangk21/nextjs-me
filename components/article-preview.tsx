@@ -34,7 +34,7 @@ const ArticlePreview = ({ article }: ArticlePreviewProps) => {
         <div>
           <div className='font-bold sm:text-xl mb-1'>{article.title}</div>
           <div className='hidden sm:block'>{article.excerpt}</div>
-          <div className='bg-gray-100 rounded-full inline-block text-sm px-3 py-0.5 mt-4'>
+          <div className='rounded-full inline-block text-sm px-3 py-0.5 mt-4 bg-gray-100'>
             {article.topic}
           </div>
         </div>

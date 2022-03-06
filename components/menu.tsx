@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
 import { BsFillSunFill } from 'react-icons/bs';
-import { useMobileNav } from '../hooks/useMobileNav';
 
 const Menu = () => {
   return (
@@ -15,7 +14,7 @@ const Menu = () => {
         </Link>
       </ul>
       <div className='border-l flex items-center px-5 ml-5 cursor-pointer'>
-        <BsFillSunFill className='text-blue-400 text-lg' />
+        <BsFillSunFill className='text-blue-500 text-lg' />
       </div>
     </div>
   );

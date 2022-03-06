@@ -28,7 +28,7 @@ const MobileMenu = () => {
       <div className='pt-4 flex justify-between items-center'>
         <div className='sm:hidden'>Switch theme</div>
         <div className='border rounded-md py-2 px-3 flex items-center'>
-          <BsFillSunFill className='text-blue-400 text-lg mr-2' />
+          <BsFillSunFill className='text-blue-500 text-lg mr-2' />
           Light
         </div>
       </div>

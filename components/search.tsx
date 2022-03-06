@@ -10,7 +10,7 @@ const Search = () => {
       <input
         type='text'
         placeholder='search posts...'
-        className='h-full w-full border rounded-3xl py-2 pl-8 pr-3'
+        className='h-full w-full border rounded-3xl py-2 pl-8 pr-3 focus:outline-blue-500'
         value={searchTerm}
         onChange={onSearchChange}
       />

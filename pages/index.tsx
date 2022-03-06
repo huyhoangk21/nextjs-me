@@ -13,7 +13,7 @@ const Home: NextPage = () => {
         <p className='md:text-lg'>
           I am an{' '}
           <Link href='https://acms.washington.edu/' passHref>
-            <a target='_blank' className='text-blue-400'>
+            <a target='_blank' className='text-blue-500'>
               applied & computational mathematical sciences
             </a>
           </Link>{' '}
@@ -23,7 +23,7 @@ const Home: NextPage = () => {
           find anything interesting and would like to talk about, you can find
           me{' '}
           <Link href='/contact' passHref>
-            <a className='text-blue-400'>here.</a>
+            <a className='text-blue-500'>here.</a>
           </Link>
         </p>
         <p className='md:text-lg'>
