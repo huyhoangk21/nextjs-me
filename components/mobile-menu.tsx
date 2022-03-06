@@ -14,18 +14,18 @@ const MobileMenu = () => {
     >
       <ul className='flex flex-col font-semibold sm:flex-row'>
         <Link href='/blog' passHref>
-          <li className='pt-3 custom-link' onClick={toggleMenu(false)}>
+          <li className='pt-4 custom-link' onClick={toggleMenu(false)}>
             Blog
           </li>
         </Link>
         <Link href='/contact' passHref>
-          <li className='py-3 custom-link' onClick={toggleMenu(false)}>
+          <li className='py-4 custom-link' onClick={toggleMenu(false)}>
             Contact
           </li>
         </Link>
       </ul>
       <hr />
-      <div className='pt-3 flex justify-between items-center'>
+      <div className='pt-4 flex justify-between items-center'>
         <div className='sm:hidden'>Switch theme</div>
         <div className='border rounded-md py-2 px-3 flex items-center'>
           <BsFillSunFill className='text-blue-400 text-lg mr-2' />

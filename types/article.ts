@@ -1,8 +1,9 @@
 import { Author } from './author';
-import { Data } from './data';
+import { Picture } from './picture';
 
 export interface Article {
-  author: { data: Data<Author> };
+  author: Author;
+  picture: Picture;
   title: string;
   slug: string;
   topic: string;

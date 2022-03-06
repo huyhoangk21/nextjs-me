@@ -1,6 +1,8 @@
 import qs from 'qs';
 import { Article } from '../types/article';
-import { Response } from '../types/response';
+import { Author } from '../types/author';
+import { Pagination } from '../types/pagination';
+import { Picture } from '../types/picture';
 
 const baseUrl = process.env.REACT_APP_BACKEND || 'http://localhost:1337';
 
@@ -13,10 +15,19 @@ const articleQuery = {
     'content',
     'updatedAt',
     'publishedAt',
+    'featured',
   ],
   populate: {
     author: {
       fields: ['name'],
+      populate: {
+        profilePicture: {
+          fields: ['alternativeText', 'url'],
+        },
+      },
+    },
+    picture: {
+      fields: ['alternativeText', 'url'],
     },
   },
 };
@@ -25,7 +36,7 @@ export const getArticles = async () => {
   const query = qs.stringify(
     {
       ...articleQuery,
-      sort: ['publishedAt:asc'],
+      sort: ['publishedAt:desc'],
     },
     {
       encodeValuesOnly: true,
@@ -34,9 +45,15 @@ export const getArticles = async () => {
 
   const res = await fetch(`${baseUrl}/api/articles?${query}`);
 
-  const data: Response<Article> = await res.json();
+  const data = await res.json();
 
-  return data;
+  const page: Pagination = data.meta;
+
+  const articles: Article[] = data.data.map((rawArticle: any) =>
+    articleMapper(rawArticle)
+  );
+
+  return { articles, page };
 };
 
 export const getArticleBySlug = async (slug: string) => {
@@ -50,13 +67,33 @@ export const getArticleBySlug = async (slug: string) => {
       },
     },
     {
-      encodeValuesOnly: true,
+      encodeValuesOnly: false,
     }
   );
 
   const res = await fetch(`${baseUrl}/api/articles?${query}`);
 
-  const data: Response<Article> = await res.json();
+  const data = await res.json();
 
   return data;
+};
+
+export const articleMapper = (rawArticle: any): Article => {
+  const profilePicture: Picture = {
+    ...rawArticle.attributes.author.data.attributes.profilePicture.data
+      .attributes,
+  };
+
+  const author: Author = {
+    ...rawArticle.attributes.author.data.attributes,
+    profilePicture,
+  };
+
+  const picture: Picture = {
+    alternativeText:
+      rawArticle.attributes.picture.data.attributes.alternativeText,
+    url: rawArticle.attributes.picture.data.attributes.url,
+  };
+
+  return { ...rawArticle.attributes, author, picture };
 };

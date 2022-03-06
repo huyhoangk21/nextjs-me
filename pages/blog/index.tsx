@@ -4,24 +4,19 @@ import React from 'react';
 import ArticlePreview from '../../components/article-preview';
 import { getArticles } from '../../lib/api';
 import { Article } from '../../types/article';
-import { Data } from '../../types/data';
 import { Pagination } from '../../types/pagination';
 
 type BlogsType = {
-  data: Data<Article>[];
-  meta?: Pagination;
+  articles: Article[];
+  page: Pagination;
 };
 
-const Blogs: NextPage<BlogsType> = ({ data, meta }) => {
+const Blogs: NextPage<BlogsType> = ({ articles, page }) => {
   return (
     <div>
       <ul>
-        {data.map(article => (
-          <Link
-            key={article.attributes.slug}
-            href={`/${article.attributes.slug}`}
-            passHref
-          >
+        {articles.map(article => (
+          <Link key={article.slug} href={`/${article.slug}`} passHref>
             <li>
               <ArticlePreview article={article} />
             </li>
@@ -35,12 +30,12 @@ const Blogs: NextPage<BlogsType> = ({ data, meta }) => {
 export default Blogs;
 
 export const getStaticProps = async () => {
-  const { data, meta } = await getArticles();
+  const { articles, page } = await getArticles();
 
   return {
     props: {
-      data,
-      meta,
+      articles,
+      page,
     },
   };
 };
