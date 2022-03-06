@@ -47,50 +47,43 @@ export const getArticles = async () => {
 
   const data = await res.json();
 
-  const page: Pagination = data.meta;
-
-  const articles: Article[] = data.data.map((rawArticle: any) =>
-    articleMapper(rawArticle)
-  );
-
-  return { articles, page };
+  return responseParser(data);
 };
 
 export const getArticlesBySearch = async (searchTerm: string) => {
-  const query = qs.stringify({
-    ...articleQuery,
-    filters: {
-      $or: [
-        {
-          title: {
-            $containsi: searchTerm,
+  const query = qs.stringify(
+    {
+      ...articleQuery,
+      filters: {
+        $or: [
+          {
+            title: {
+              $containsi: searchTerm,
+            },
           },
-        },
-        {
-          topic: {
-            $containsi: searchTerm,
+          {
+            topic: {
+              $containsi: searchTerm,
+            },
           },
-        },
-        {
-          content: {
-            $containsi: searchTerm,
+          {
+            content: {
+              $containsi: searchTerm,
+            },
           },
-        },
-      ],
+        ],
+      },
     },
-  });
+    {
+      encodeValuesOnly: true,
+    }
+  );
 
   const res = await fetch(`${baseUrl}/api/articles?${query}`);
 
   const data = await res.json();
 
-  const page: Pagination = data.meta;
-
-  const articles: Article[] = data.data.map((rawArticle: any) =>
-    articleMapper(rawArticle)
-  );
-
-  return { page, articles };
+  return responseParser(data);
 };
 
 export const getArticleBySlug = async (slug: string) => {
@@ -104,7 +97,7 @@ export const getArticleBySlug = async (slug: string) => {
       },
     },
     {
-      encodeValuesOnly: false,
+      encodeValuesOnly: true,
     }
   );
 
@@ -112,10 +105,10 @@ export const getArticleBySlug = async (slug: string) => {
 
   const data = await res.json();
 
-  return data;
+  return responseParser(data);
 };
 
-export const articleMapper = (rawArticle: any): Article => {
+const articleMapper = (rawArticle: any): Article => {
   const profilePicture: Picture = {
     ...rawArticle.attributes.author.data.attributes.profilePicture.data
       .attributes,
@@ -133,4 +126,14 @@ export const articleMapper = (rawArticle: any): Article => {
   };
 
   return { ...rawArticle.attributes, author, picture };
+};
+
+const responseParser = (data: any) => {
+  const page: Pagination = data.meta;
+
+  const articles: Article[] = data.data.map((rawArticle: any) =>
+    articleMapper(rawArticle)
+  );
+
+  return { page, articles };
 };

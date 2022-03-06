@@ -10,6 +10,10 @@
   @apply hover:text-blue-400 cursor-pointer;
 }
 
+.rounded-image {
+  @apply relative border border-gray-200 dark:border-slate-500 rounded-full overflow-hidden;
+}
+
 html,
 body {
   padding: 0;

@@ -25,11 +25,11 @@ const MobileMenu = () => {
           </li>
         </Link>
       </ul>
-      <hr />
+      <hr className='dark:border-slate-700' />
       <div className='pt-4 flex justify-between items-center'>
         <div className='sm:hidden'>Switch theme</div>
         <div
-          className='border rounded-md py-2 px-3 flex items-center'
+          className='border rounded-md py-2 px-3 flex items-center dark:border-slate-700'
           onClick={toggleDarkMode(!dark)}
         >
           {dark ? (

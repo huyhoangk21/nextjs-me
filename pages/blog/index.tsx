@@ -30,7 +30,7 @@ const Blogs: NextPage<BlogsType> = ({ recentArticles, page }) => {
       <ul>
         {articles &&
           articles.map(article => (
-            <Link key={article.slug} href={`/${article.slug}`} passHref>
+            <Link key={article.slug} href={`/blog/${article.slug}`} passHref>
               <li>
                 <ArticlePreview article={article} />
               </li>

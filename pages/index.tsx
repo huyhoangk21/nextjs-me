@@ -31,7 +31,7 @@ const Home: NextPage = () => {
           corgi, and visiting my favorite local coffee shop for a cup of Latte.
         </p>
       </div>
-      <div className='relative h-40 w-40 mx-auto rounded-full overflow-hidden'>
+      <div className='rounded-image h-40 w-40 mx-auto'>
         <Image
           src='https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1085&q=80'
           layout='fill'
