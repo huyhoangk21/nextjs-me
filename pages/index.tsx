@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 const Home: NextPage = () => {
   return (
-    <div className='flex flex-col-reverse items-center gap-y-8 text-justify md:gap-x-10 md:pt-20'>
+    <div className='flex flex-col-reverse items-center gap-y-8 text-justify md:gap-x-10 md:pt-20 dark:text-white'>
       <div className='flex flex-col gap-y-3 md:max-w-sm xl:max-w-xl'>
         <h1 className='font-bold text-4xl md:text-4xl'>Hello.</h1>
         <h2 className='font-semibold text-2xl md:text-2xl'>

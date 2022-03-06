@@ -1,16 +1,17 @@
 import Link from 'next/link';
 import React from 'react';
-import { BsFillSunFill } from 'react-icons/bs';
+import { BsFillMoonStarsFill, BsFillSunFill } from 'react-icons/bs';
+import { useDarkMode } from '../hooks/useDarkMode';
 import { useMobileNav } from '../hooks/useMobileNav';
 
 const MobileMenu = () => {
   const { open, toggleMenu } = useMobileNav();
-
+  const { dark, toggleDarkMode } = useDarkMode();
   return (
     <div
       className={`${
         !open && 'hidden'
-      } sm:hidden fixed top-16 bottom-0 inset-x-0 px-4 bg-white`}
+      } sm:hidden fixed top-16 bottom-0 inset-x-0 px-4 bg-white dark:bg-black dark:text-white`}
     >
       <ul className='flex flex-col font-semibold sm:flex-row'>
         <Link href='/blog' passHref>
@@ -27,9 +28,15 @@ const MobileMenu = () => {
       <hr />
       <div className='pt-4 flex justify-between items-center'>
         <div className='sm:hidden'>Switch theme</div>
-        <div className='border rounded-md py-2 px-3 flex items-center'>
-          <BsFillSunFill className='text-blue-500 text-lg mr-2' />
-          Light
+        <div
+          className='border rounded-md py-2 px-3 flex items-center'
+          onClick={toggleDarkMode(!dark)}
+        >
+          {dark ? (
+            <BsFillMoonStarsFill className='text-blue-500 text-lg' />
+          ) : (
+            <BsFillSunFill className='text-blue-500 text-lg' />
+          )}
         </div>
       </div>
     </div>

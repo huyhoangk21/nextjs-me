@@ -19,12 +19,12 @@ const Blogs: NextPage<BlogsType> = ({ recentArticles, page }) => {
   const articles = searchTerm.length !== 0 ? searchArticles : recentArticles;
 
   return (
-    <div>
+    <div className='dark:text-white'>
       <div className='flex justify-between items-center pb-2'>
         <div className='font-bold text-2xl'>Posts</div>
         <Search />
       </div>
-      {searchTerm.length !== 0 && articles.length === 0 && (
+      {articles.length === 0 && (
         <div className='text-center mt-8'>No posts found.</div>
       )}
       <ul>

@@ -1,12 +1,15 @@
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 import Layout from '../components/layout';
+import { DarkModeProvider } from '../hooks/useDarkMode';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <DarkModeProvider>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </DarkModeProvider>
   );
 }
 

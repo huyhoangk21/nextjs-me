@@ -8,8 +8,8 @@ const Navbar = () => {
   const { open, toggleMenu } = useMobileNav();
 
   return (
-    <div className='border-b sticky top-0 z-50 bg-white'>
-      <nav className='custom-container flex justify-between items-center h-full'>
+    <div className='border-b border-b-gray-300 sticky top-0 z-50 bg-white dark:bg-black'>
+      <nav className='custom-container flex justify-between items-center h-full dark:text-white'>
         <Link href='/' passHref>
           <div onClick={toggleMenu(false)} className='cursor-pointer'>
             Hoang Le
