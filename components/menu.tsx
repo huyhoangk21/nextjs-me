@@ -7,7 +7,7 @@ const Menu = () => {
   return (
     <div className='hidden sm:flex'>
       <ul className='flex flex-col font-semibold sm:flex-row gap-x-5'>
-        <Link href='/blogs' passHref>
+        <Link href='/blog' passHref>
           <li className='custom-link'>Blog</li>
         </Link>
         <Link href='/contact' passHref>

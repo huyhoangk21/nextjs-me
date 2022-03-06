@@ -13,7 +13,7 @@ const MobileMenu = () => {
       } sm:hidden absolute top-16 bottom-0 inset-x-0 px-4 bg-white z-50`}
     >
       <ul className='flex flex-col font-semibold sm:flex-row'>
-        <Link href='/blogs' passHref>
+        <Link href='/blog' passHref>
           <li className='pt-3 custom-link' onClick={toggleMenu(false)}>
             Blog
           </li>
