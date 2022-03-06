@@ -17,6 +17,7 @@ const articleQuery = {
     'publishedAt',
     'featured',
   ],
+  sort: ['publishedAt:desc'],
   populate: {
     author: {
       fields: ['name'],
@@ -36,7 +37,6 @@ export const getArticles = async () => {
   const query = qs.stringify(
     {
       ...articleQuery,
-      sort: ['publishedAt:desc'],
     },
     {
       encodeValuesOnly: true,
@@ -54,6 +54,43 @@ export const getArticles = async () => {
   );
 
   return { articles, page };
+};
+
+export const getArticlesBySearch = async (searchTerm: string) => {
+  const query = qs.stringify({
+    ...articleQuery,
+    filters: {
+      $or: [
+        {
+          title: {
+            $containsi: searchTerm,
+          },
+        },
+        {
+          topic: {
+            $containsi: searchTerm,
+          },
+        },
+        {
+          content: {
+            $containsi: searchTerm,
+          },
+        },
+      ],
+    },
+  });
+
+  const res = await fetch(`${baseUrl}/api/articles?${query}`);
+
+  const data = await res.json();
+
+  const page: Pagination = data.meta;
+
+  const articles: Article[] = data.data.map((rawArticle: any) =>
+    articleMapper(rawArticle)
+  );
+
+  return { page, articles };
 };
 
 export const getArticleBySlug = async (slug: string) => {
