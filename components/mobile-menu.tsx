@@ -14,12 +14,12 @@ const MobileMenu = () => {
     >
       <ul className='flex flex-col font-semibold sm:flex-row'>
         <Link href='/blog' passHref>
-          <li className='pt-4 custom-link' onClick={toggleMenu(false)}>
+          <li className='py-2 mt-2 custom-link' onClick={toggleMenu(false)}>
             Blog
           </li>
         </Link>
         <Link href='/contact' passHref>
-          <li className='py-4 custom-link' onClick={toggleMenu(false)}>
+          <li className='py-2 mb-2 custom-link' onClick={toggleMenu(false)}>
             Contact
           </li>
         </Link>
