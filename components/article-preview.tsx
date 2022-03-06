@@ -9,7 +9,7 @@ type ArticlePreviewProps = {
 
 const ArticlePreview = ({ article }: ArticlePreviewProps) => {
   return (
-    <div className='cursor-pointer border-b pb-4 mb-4'>
+    <div className='cursor-pointer border-t py-4'>
       <div className='flex items-center gap-x-3'>
         <div className='relative h-8 w-8 rounded-full overflow-hidden'>
           <Image
@@ -30,7 +30,7 @@ const ArticlePreview = ({ article }: ArticlePreviewProps) => {
           </Moment>
         </div>
       </div>
-      <div className='mt-2 flex gap-x-1 sm:gap-x-7'>
+      <div className='mt-2 flex gap-x-1 sm:gap-x-7 justify-between'>
         <div>
           <div className='font-bold sm:text-xl mb-1'>{article.title}</div>
           <div className='hidden sm:block'>{article.excerpt}</div>

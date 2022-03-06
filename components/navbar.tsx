@@ -10,8 +10,10 @@ const Navbar = () => {
   return (
     <div className='border-b'>
       <nav className='custom-container flex justify-between items-center h-full'>
-        <Link href='/'>
-          <div onClick={toggleMenu(false)}>Hoang Le</div>
+        <Link href='/' passHref>
+          <div onClick={toggleMenu(false)} className='cursor-pointer'>
+            Hoang Le
+          </div>
         </Link>
         <MobileMenu />
         <Menu />
