@@ -9,7 +9,7 @@ type ArticlePreviewProps = {
 
 const ArticlePreview = ({ article }: ArticlePreviewProps) => {
   return (
-    <div className='cursor-pointer border-t py-4'>
+    <div className='cursor-pointer border-t py-4 dark:border-t-slate-500'>
       <div className='flex items-center gap-x-3'>
         <div className='relative h-8 w-8 rounded-full overflow-hidden'>
           <Image
@@ -38,7 +38,7 @@ const ArticlePreview = ({ article }: ArticlePreviewProps) => {
             {article.topic}
           </div>
         </div>
-        <div className='relative basis-24 h-24 border flex-shrink-0 sm:basis-28 sm:h-28'>
+        <div className='relative basis-24 h-24 border flex-shrink-0 sm:basis-28 sm:h-28 dark:border-slate-500'>
           <Image
             src={`http://localhost:1337${article.picture.url}`}
             alt={article.picture.alternativeText}

@@ -17,7 +17,7 @@ const Menu = () => {
         </Link>
       </ul>
       <div
-        className='border-l flex items-center px-5 ml-5 cursor-pointer'
+        className='border-l flex items-center px-5 ml-5 cursor-pointer dark:border-l-slate-500'
         onClick={toggleDarkMode(!dark)}
       >
         {dark ? (
