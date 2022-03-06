@@ -27,8 +27,8 @@ const Blog = ({ article }: BlogTypeProps) => {
           </div>
         </div>
       </div>
-      <div className='font-bold text-2xl sm:text-3xl my-4'>{article.title}</div>
-      <div className='leading-6'>{article.content}</div>
+      <div className='font-bold text-2xl sm:text-3xl my-6'>{article.title}</div>
+      <div className='leading-8'>{article.content}</div>
     </div>
   );
 };
