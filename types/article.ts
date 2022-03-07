@@ -9,7 +9,6 @@ export interface Article {
   topic: string;
   excerpt: string;
   content: string;
-  featured: boolean;
-  publishedAt: Date;
+  createdAt: Date;
   updatedAt: Date;
 }

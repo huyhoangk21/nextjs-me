@@ -1,7 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
 import { Article } from '../types/article';
-import Moment from 'react-moment';
 import Time from './time';
 
 type ArticlePreviewProps = {
@@ -20,15 +19,21 @@ const ArticlePreview = ({ article }: ArticlePreviewProps) => {
             layout='fill'
           />
         </div>
-        <div className='font-semibold'>{article.author.name}</div>
+        <div className='font-semibold dark:text-gray-100'>
+          {article.author.name}
+        </div>
         <div className='text-slate-500'>
-          <Time>{article.publishedAt}</Time>
+          <Time>{article.createdAt}</Time>
         </div>
       </div>
       <div className='mt-2 flex gap-x-1 sm:gap-x-7 justify-between'>
         <div>
-          <div className='font-bold sm:text-xl mb-1'>{article.title}</div>
-          <div className='hidden sm:block'>{article.excerpt}</div>
+          <div className='font-bold sm:text-xl mb-1 dark:text-gray-100'>
+            {article.title}
+          </div>
+          <div className='hidden sm:block dark:text-gray-400'>
+            {article.excerpt}
+          </div>
           <div className='rounded-full inline-block text-sm px-3 py-0.5 mt-4 bg-gray-200 dark:bg-slate-500'>
             {article.topic}
           </div>

@@ -11,8 +11,10 @@
 }
 
 .rounded-image {
-  @apply relative border border-gray-200 dark:border-slate-500 rounded-full overflow-hidden;
+  @apply relative rounded-full overflow-hidden;
 }
+
+/* border border-gray-200 dark:border-slate-700 */
 
 html,
 body {

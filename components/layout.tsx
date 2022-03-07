@@ -10,7 +10,7 @@ const Layout = ({ children }: { children?: ReactNode }) => {
 
   return (
     <div className={`${dark && 'dark'}`}>
-      <div className='grid grid-rows-layout min-h-screen dark:bg-black'>
+      <div className='grid grid-rows-layout min-h-screen dark:bg-gray-900'>
         <MobileNavProvider>
           <Navbar />
         </MobileNavProvider>

@@ -14,10 +14,9 @@ const articleQuery = {
     'excerpt',
     'content',
     'updatedAt',
-    'publishedAt',
-    'featured',
+    'createdAt',
   ],
-  sort: ['publishedAt:desc'],
+  sort: ['createdAt:desc'],
   populate: {
     author: {
       fields: ['name'],
