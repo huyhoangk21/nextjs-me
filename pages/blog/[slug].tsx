@@ -3,12 +3,16 @@ import Image from 'next/image';
 import { getArticleBySlug, getArticles } from '../../lib/api';
 import { Article } from '../../types/article';
 import Time from '../../components/time';
+import { serialize } from 'next-mdx-remote/serialize';
+import Content from '../../components/content';
+import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 
 type BlogTypeProps = {
   article: Article;
+  content: MDXRemoteSerializeResult;
 };
 
-const Blog = ({ article }: BlogTypeProps) => {
+const Blog = ({ article, content }: BlogTypeProps) => {
   return (
     <div className='dark:text-gray-400'>
       <div className='flex gap-x-3 items-center'>
@@ -30,7 +34,7 @@ const Blog = ({ article }: BlogTypeProps) => {
       <div className='font-bold text-2xl sm:text-3xl my-6 dark:text-gray-100'>
         {article.title}
       </div>
-      <div className='leading-8'>{article.content}</div>
+      <Content content={content} />
     </div>
   );
 };
@@ -51,9 +55,12 @@ export const getStaticProps = async ({
 }) => {
   const { articles } = await getArticleBySlug(params.slug);
 
+  const mdxSource = await serialize(articles[0].content);
+
   return {
     props: {
       article: articles[0],
+      content: mdxSource,
     },
   };
 };
