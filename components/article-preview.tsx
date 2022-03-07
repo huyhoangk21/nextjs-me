@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { Article } from '../types/article';
+import LinesEllipsis from 'react-lines-ellipsis';
 import Time from './time';
 
 type ArticlePreviewProps = {
@@ -32,7 +33,13 @@ const ArticlePreview = ({ article }: ArticlePreviewProps) => {
             {article.title}
           </div>
           <div className='hidden sm:block dark:text-gray-400'>
-            {article.excerpt}
+            <LinesEllipsis
+              text={article.excerpt}
+              maxLine='2'
+              ellipsis='...'
+              trimRight
+              basedOn='letters'
+            />
           </div>
           <div className='rounded-full inline-block text-sm px-3 py-0.5 mt-4 bg-gray-200 dark:bg-slate-500'>
             {article.topic}
