@@ -14,7 +14,7 @@ type BlogTypeProps = {
 
 const Blog = ({ article, content }: BlogTypeProps) => {
   return (
-    <div className='dark:text-gray-400'>
+    <div className='dark:text-gray-400 pt-4 pb-10'>
       <div className='flex gap-x-3 items-center'>
         <div className='rounded-image h-10 w-10'>
           <Image
@@ -25,13 +25,15 @@ const Blog = ({ article, content }: BlogTypeProps) => {
           />
         </div>
         <div>
-          <div className='dark:text-gray-100'>{article.author.name}</div>
+          <div className='dark:text-gray-100 font-bold'>
+            {article.author.name}
+          </div>
           <div className='text-slate-500 text-sm'>
             <Time>{article.createdAt}</Time>
           </div>
         </div>
       </div>
-      <div className='font-bold text-2xl sm:text-3xl my-6 dark:text-gray-100'>
+      <div className='font-bold text-2xl sm:text-3xl mt-6 my-10 dark:text-gray-100'>
         {article.title}
       </div>
       <Content content={content} />

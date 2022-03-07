@@ -7,7 +7,7 @@ type ContentProps = {
 
 const Content = ({ content }: ContentProps) => {
   return (
-    <div className='leading-8 prose'>
+    <div className='prose dark:prose-invert max-w-none'>
       <MDXRemote {...content} />
     </div>
   );

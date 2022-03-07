@@ -11,7 +11,7 @@ const MobileMenu = () => {
     <div
       className={`${
         !open && 'hidden'
-      } sm:hidden fixed top-16 bottom-0 inset-x-0 px-4 bg-white dark:bg-black dark:text-white`}
+      } sm:hidden fixed top-16 bottom-0 inset-x-0 px-4 bg-white dark:bg-gray-900 dark:text-white`}
     >
       <ul className='flex flex-col font-semibold sm:flex-row'>
         <Link href='/blog' passHref>

@@ -20,18 +20,14 @@ const ArticlePreview = ({ article }: ArticlePreviewProps) => {
             layout='fill'
           />
         </div>
-        <div className='font-semibold dark:text-gray-100'>
-          {article.author.name}
-        </div>
+        <div className='font-semibold'>{article.author.name}</div>
         <div className='text-slate-500'>
           <Time>{article.createdAt}</Time>
         </div>
       </div>
       <div className='mt-2 flex gap-x-1 sm:gap-x-7 justify-between'>
         <div>
-          <div className='font-bold sm:text-xl mb-1 dark:text-gray-100'>
-            {article.title}
-          </div>
+          <div className='font-bold sm:text-xl mb-1'>{article.title}</div>
           <div className='hidden sm:block dark:text-gray-400'>
             <LinesEllipsis
               text={article.excerpt}

@@ -6,10 +6,10 @@ const Home: NextPage = () => {
   return (
     <div className='flex flex-col-reverse items-center gap-y-8 text-justify md:gap-x-10 md:pt-20 dark:text-gray-400'>
       <div className='flex flex-col gap-y-3 md:max-w-sm xl:max-w-xl'>
-        <h1 className='font-bold text-4xl md:text-4xl dark:text-gray-100'>
+        <h1 className='font-bold text-4xl md:text-4xl dark:text-white'>
           Hello.
         </h1>
-        <h2 className='font-semibold text-2xl md:text-2xl dark:text-gray-100'>
+        <h2 className='font-semibold text-2xl md:text-2xl dark:text-white'>
           My name is Hoang Le.
         </h2>
         <p className='md:text-lg'>

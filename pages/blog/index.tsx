@@ -21,7 +21,7 @@ const Blogs: NextPage<BlogsType> = ({ recentArticles, page }) => {
   return (
     <div className='dark:text-white'>
       <div className='flex justify-between items-center pb-2'>
-        <div className='font-bold text-2xl dark:text-gray-100'>Posts</div>
+        <div className='font-bold text-2xl'>Posts</div>
         <Search />
       </div>
       {articles.length === 0 && (
