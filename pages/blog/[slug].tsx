@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Image from 'next/image';
 import { getArticleBySlug, getArticles } from '../../lib/api';
 import { Article } from '../../types/article';
@@ -6,6 +6,7 @@ import Time from '../../components/time';
 import { serialize } from 'next-mdx-remote/serialize';
 import Content from '../../components/content';
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
+import { NextSeo } from 'next-seo';
 
 type BlogTypeProps = {
   article: Article;
@@ -14,30 +15,33 @@ type BlogTypeProps = {
 
 const Blog = ({ article, content }: BlogTypeProps) => {
   return (
-    <div className='dark:text-gray-400 pt-4 pb-10'>
-      <div className='flex gap-x-3 items-center'>
-        <div className='rounded-image h-10 w-10'>
-          <Image
-            src={`http://localhost:1337${article.author.profilePicture.url}`}
-            alt={article.author.profilePicture.alternativeText}
-            objectFit='cover'
-            layout='fill'
-          />
-        </div>
-        <div>
-          <div className='dark:text-gray-100 font-bold'>
-            {article.author.name}
+    <Fragment>
+      <NextSeo title={article.title} description={article.excerpt} />
+      <div className='dark:text-gray-400 pt-4 pb-10'>
+        <div className='flex gap-x-3 items-center'>
+          <div className='rounded-image h-10 w-10'>
+            <Image
+              src={`http://localhost:1337${article.author.profilePicture.url}`}
+              alt={article.author.profilePicture.alternativeText}
+              objectFit='cover'
+              layout='fill'
+            />
           </div>
-          <div className='text-slate-500 text-sm'>
-            <Time>{article.createdAt}</Time>
+          <div>
+            <div className='dark:text-gray-100 font-bold'>
+              {article.author.name}
+            </div>
+            <div className='text-slate-500 text-sm'>
+              <Time>{article.createdAt}</Time>
+            </div>
           </div>
         </div>
+        <div className='font-bold text-2xl sm:text-3xl mt-6 my-10 dark:text-gray-100'>
+          {article.title}
+        </div>
+        <Content content={content} />
       </div>
-      <div className='font-bold text-2xl sm:text-3xl mt-6 my-10 dark:text-gray-100'>
-        {article.title}
-      </div>
-      <Content content={content} />
-    </div>
+    </Fragment>
   );
 };
 

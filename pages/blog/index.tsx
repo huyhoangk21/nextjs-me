@@ -1,6 +1,7 @@
+import { NextSeo } from 'next-seo';
 import Link from 'next/link';
 import { NextPage } from 'next/types';
-import React from 'react';
+import React, { Fragment } from 'react';
 import ArticlePreview from '../../components/article-preview';
 import Search from '../../components/search';
 import { useSearch } from '../../hooks/useSearch';
@@ -19,25 +20,31 @@ const Blogs: NextPage<BlogsType> = ({ recentArticles, page }) => {
   const articles = searchTerm.length !== 0 ? searchArticles : recentArticles;
 
   return (
-    <div className='dark:text-white'>
-      <div className='flex justify-between items-center pb-2'>
-        <div className='font-bold text-2xl'>Posts</div>
-        <Search />
+    <Fragment>
+      <NextSeo
+        title='Blog'
+        description='This is the place where I talk about all sorts of interesting things related to computer science and software developement'
+      />
+      <div className='dark:text-white'>
+        <div className='flex justify-between items-center pb-2'>
+          <div className='font-bold text-2xl'>Posts</div>
+          <Search />
+        </div>
+        {articles.length === 0 && (
+          <div className='text-center mt-8'>No posts found.</div>
+        )}
+        <ul>
+          {articles &&
+            articles.map(article => (
+              <Link key={article.slug} href={`/blog/${article.slug}`} passHref>
+                <li>
+                  <ArticlePreview article={article} />
+                </li>
+              </Link>
+            ))}
+        </ul>
       </div>
-      {articles.length === 0 && (
-        <div className='text-center mt-8'>No posts found.</div>
-      )}
-      <ul>
-        {articles &&
-          articles.map(article => (
-            <Link key={article.slug} href={`/blog/${article.slug}`} passHref>
-              <li>
-                <ArticlePreview article={article} />
-              </li>
-            </Link>
-          ))}
-      </ul>
-    </div>
+    </Fragment>
   );
 };
 
