@@ -7,6 +7,8 @@ import { serialize } from 'next-mdx-remote/serialize';
 import Content from '../../components/content';
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { NextSeo } from 'next-seo';
+import { useRouter } from 'next/router';
+import { CgSpinner } from 'react-icons/cg';
 
 type BlogTypeProps = {
   article: Article;
@@ -14,6 +16,16 @@ type BlogTypeProps = {
 };
 
 const Blog = ({ article, content }: BlogTypeProps) => {
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return (
+      <div className='fixed inset-0 flex justify-center items-center animate-spin text-4xl text-blue-500'>
+        <CgSpinner />
+      </div>
+    );
+  }
+
   return (
     <Fragment>
       <NextSeo title={article.title} description={article.excerpt} />
@@ -51,7 +63,7 @@ export const getStaticPaths = async () => {
   const { articles } = await getArticles();
   const paths = articles.map(article => ({ params: { slug: article.slug } }));
 
-  return { paths, fallback: false };
+  return { paths, fallback: true };
 };
 
 export const getStaticProps = async ({
