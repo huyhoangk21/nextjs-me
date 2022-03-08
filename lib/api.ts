@@ -56,7 +56,8 @@ export const getArticles = async () => {
     }
 
     return { error: false, ...responseParser(data) };
-  } catch {
+  } catch (err) {
+    console.log(err);
     return {
       error: true,
       articles: [] as Article[],
@@ -108,7 +109,8 @@ export const getArticlesBySearch = async (searchTerm: string) => {
     }
 
     return { error: false, ...responseParser(data) };
-  } catch {
+  } catch (err) {
+    console.log(err);
     return {
       error: true,
       articles: [] as Article[],
@@ -146,7 +148,8 @@ export const getArticleBySlug = async (slug: string) => {
     }
 
     return { error: false, ...responseParser(data) };
-  } catch {
+  } catch (err) {
+    console.log(err);
     return {
       error: true,
       articles: [] as Article[],
