@@ -21,6 +21,10 @@ module.exports = {
                 display: 'none',
               },
             },
+            pre: {
+              overflow: 'hidden',
+              whiteSpace: 'pre-wrap',
+            },
           },
         },
         invert: {
