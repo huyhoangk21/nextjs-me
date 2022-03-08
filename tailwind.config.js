@@ -22,7 +22,6 @@ module.exports = {
               },
             },
             pre: {
-              overflow: 'hidden',
               whiteSpace: 'pre-wrap',
             },
           },

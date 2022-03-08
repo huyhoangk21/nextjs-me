@@ -1,11 +1,10 @@
 export default {
   'code[class*="language-"]': {
-    textAlign: 'left',
+    textShadow: '0 1px rgba(0, 0, 0, 0.3)',
+    direction: 'ltr',
     whiteSpace: 'pre',
     wordSpacing: 'normal',
     wordBreak: 'normal',
-    wordWrap: 'normal',
-    fontFamily: 'ui-monospace, monospace',
     MozTabSize: '4',
     OTabSize: '4',
     tabSize: '4',
@@ -15,11 +14,10 @@ export default {
     hyphens: 'none',
   },
   'pre[class*="language-"]': {
-    textAlign: 'left',
+    textShadow: '0 1px rgba(0, 0, 0, 0.3)',
+    direction: 'ltr',
     wordSpacing: 'normal',
     wordBreak: 'normal',
-    wordWrap: 'normal',
-    fontFamily: 'ui-monospace, monospace',
     MozTabSize: '4',
     OTabSize: '4',
     tabSize: '4',
@@ -27,157 +25,114 @@ export default {
     MozHyphens: 'none',
     msHyphens: 'none',
     hyphens: 'none',
-    position: 'relative',
-  },
-  'code[class*="language-"]::-moz-selection': {
-    background: '#363636',
-  },
-  'pre[class*="language-"]::-moz-selection': {
-    background: '#363636',
-  },
-  'code[class*="language-"] ::-moz-selection': {
-    background: '#363636',
-  },
-  'pre[class*="language-"] ::-moz-selection': {
-    background: '#363636',
-  },
-  'code[class*="language-"]::selection': {
-    background: '#363636',
-  },
-  'pre[class*="language-"]::selection': {
-    background: '#363636',
-  },
-  'code[class*="language-"] ::selection': {
-    background: '#363636',
-  },
-  'pre[class*="language-"] ::selection': {
-    background: '#363636',
   },
   ':not(pre) > code[class*="language-"]': {
-    whiteSpace: 'normal',
-    borderRadius: '0.2em',
-    padding: '0.1em',
-  },
-  '.language-css > code': {
-    color: '#fd9170',
-  },
-  '.language-sass > code': {
-    color: '#fd9170',
-  },
-  '.language-scss > code': {
-    color: '#fd9170',
-  },
-  '[class*="language-"] .namespace': {
-    Opacity: '0.7',
-  },
-  atrule: {
-    color: '#c792ea',
-  },
-  'attr-name': {
-    color: '#ffcb6b',
-  },
-  'attr-value': {
-    color: '#a5e844',
-  },
-  attribute: {
-    color: '#a5e844',
-  },
-  boolean: {
-    color: '#c792ea',
-  },
-  builtin: {
-    color: '#ffcb6b',
-  },
-  cdata: {
-    color: '#80cbc4',
-  },
-  char: {
-    color: '#80cbc4',
-  },
-  class: {
-    color: '#ffcb6b',
-  },
-  'class-name': {
-    color: '#f2ff00',
+    background: '#1d1f21',
+    padding: '.1em',
+    borderRadius: '.3em',
   },
   comment: {
-    color: '#616161',
-  },
-  constant: {
-    color: '#c792ea',
-  },
-  deleted: {
-    color: '#ff6666',
-  },
-  doctype: {
-    color: '#616161',
-  },
-  entity: {
-    color: '#ff6666',
-  },
-  function: {
-    color: '#c792ea',
-  },
-  hexcode: {
-    color: '#f2ff00',
-  },
-  id: {
-    color: '#c792ea',
-    fontWeight: 'bold',
-  },
-  important: {
-    color: '#c792ea',
-    fontWeight: 'bold',
-  },
-  inserted: {
-    color: '#80cbc4',
-  },
-  keyword: {
-    color: '#c792ea',
-  },
-  number: {
-    color: '#fd9170',
-  },
-  operator: {
-    color: '#89ddff',
+    color: '#7C7C7C',
   },
   prolog: {
-    color: '#616161',
+    color: '#7C7C7C',
   },
-  property: {
-    color: '#80cbc4',
+  doctype: {
+    color: '#7C7C7C',
   },
-  'pseudo-class': {
-    color: '#a5e844',
-  },
-  'pseudo-element': {
-    color: '#a5e844',
+  cdata: {
+    color: '#7C7C7C',
   },
   punctuation: {
-    color: '#89ddff',
+    color: '#c5c8c6',
   },
-  regex: {
-    color: '#f2ff00',
+  '.namespace': {
+    Opacity: '.7',
   },
-  selector: {
-    color: '#ff6666',
+  property: {
+    color: '#96CBFE',
   },
-  string: {
-    color: '#a5e844',
-  },
-  symbol: {
-    color: '#c792ea',
+  keyword: {
+    color: '#96CBFE',
   },
   tag: {
-    color: '#ff6666',
+    color: '#96CBFE',
   },
-  unit: {
-    color: '#fd9170',
+  'class-name': {
+    color: '#FFFFB6',
   },
-  url: {
-    color: '#ff6666',
+  boolean: {
+    color: '#99CC99',
+  },
+  constant: {
+    color: '#99CC99',
+  },
+  symbol: {
+    color: '#f92672',
+  },
+  deleted: {
+    color: '#f92672',
+  },
+  number: {
+    color: '#FF73FD',
+  },
+  selector: {
+    color: '#A8FF60',
+  },
+  'attr-name': {
+    color: '#A8FF60',
+  },
+  string: {
+    color: '#A8FF60',
+  },
+  char: {
+    color: '#A8FF60',
+  },
+  builtin: {
+    color: '#A8FF60',
+  },
+  inserted: {
+    color: '#A8FF60',
   },
   variable: {
-    color: '#ff6666',
+    color: '#C6C5FE',
+  },
+  operator: {
+    color: '#EDEDED',
+  },
+  entity: {
+    color: '#FFFFB6',
+    cursor: 'help',
+  },
+  url: {
+    color: '#96CBFE',
+  },
+  '.language-css .token.string': {
+    color: '#87C38A',
+  },
+  '.style .token.string': {
+    color: '#87C38A',
+  },
+  atrule: {
+    color: '#F9EE98',
+  },
+  'attr-value': {
+    color: '#F9EE98',
+  },
+  function: {
+    color: '#DAD085',
+  },
+  regex: {
+    color: '#E9C062',
+  },
+  important: {
+    color: '#fd971f',
+    fontWeight: 'bold',
+  },
+  bold: {
+    fontWeight: 'bold',
+  },
+  italic: {
+    fontStyle: 'italic',
   },
 };
