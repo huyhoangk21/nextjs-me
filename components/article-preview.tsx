@@ -10,6 +10,7 @@ type ArticlePreviewProps = {
 };
 
 const ArticlePreview = ({ article }: ArticlePreviewProps) => {
+  console.log(article.picture.url);
   return (
     <div className='cursor-pointer border-t py-4 dark:border-t-slate-700'>
       <div className='flex items-center gap-x-3'>
