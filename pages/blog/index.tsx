@@ -11,7 +11,7 @@ import { Pagination } from '../../types/pagination';
 import Custom500 from '../500';
 
 type BlogsType = {
-  recentArticles?: Article[];
+  recentArticles: Article[];
   page?: Pagination;
   error: boolean;
 };

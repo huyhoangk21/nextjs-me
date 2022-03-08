@@ -54,7 +54,7 @@ export const getArticles = async (): Promise<Response> => {
     const data = await res.json();
 
     if (data.errors || !data.data) {
-      return { error: true };
+      return { error: true, articles: [] };
     }
 
     return { error: false, ...responseParser(data) };
