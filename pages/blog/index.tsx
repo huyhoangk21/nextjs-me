@@ -12,7 +12,7 @@ import Custom500 from '../500';
 
 type BlogsType = {
   recentArticles: Article[];
-  page?: Pagination;
+  page: Pagination;
   error: boolean;
 };
 

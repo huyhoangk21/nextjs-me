@@ -12,12 +12,12 @@ import { CgSpinner } from 'react-icons/cg';
 import Custom500 from '../500';
 
 type BlogTypeProps = {
-  article?: Article;
+  articles: Article[];
   content?: MDXRemoteSerializeResult;
   error: boolean;
 };
 
-const Blog = ({ article, content, error }: BlogTypeProps) => {
+const Blog = ({ articles, content, error }: BlogTypeProps) => {
   const router = useRouter();
 
   if (error) {
@@ -32,30 +32,32 @@ const Blog = ({ article, content, error }: BlogTypeProps) => {
     );
   }
 
+  const article = articles[0];
+
   return (
     <Fragment>
-      <NextSeo title={article!.title} description={article!.excerpt} />
+      <NextSeo title={article.title} description={article.excerpt} />
       <div className='dark:text-gray-400 pt-4 pb-10'>
         <div className='flex gap-x-3 items-center'>
           <div className='rounded-image h-10 w-10'>
             <Image
-              src={`${baseUrl}${article!.author.profilePicture.url}`}
-              alt={article!.author.profilePicture.alternativeText}
+              src={`${baseUrl}${article.author.profilePicture.url}`}
+              alt={article.author.profilePicture.alternativeText}
               objectFit='cover'
               layout='fill'
             />
           </div>
           <div>
             <div className='dark:text-gray-100 font-bold'>
-              {article!.author.name}
+              {article.author.name}
             </div>
             <div className='text-slate-500 text-sm'>
-              <Time>{article!.createdAt}</Time>
+              <Time>{article.createdAt}</Time>
             </div>
           </div>
         </div>
         <div className='font-bold text-2xl sm:text-3xl mt-6 my-10 dark:text-gray-100'>
-          {article!.title}
+          {article.title}
         </div>
         <Content content={content!} />
       </div>
@@ -84,12 +86,11 @@ export const getStaticProps = async ({
 }) => {
   const { articles, error } = await getArticleBySlug(params.slug);
 
-  const props: BlogTypeProps = { error };
+  const props: BlogTypeProps = { error, articles };
 
   if (!error && articles.length > 0) {
     const mdxSource = await serialize(articles[0].content);
     props.content = mdxSource;
-    props.article = articles[0];
   }
 
   return {

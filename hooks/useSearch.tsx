@@ -40,8 +40,8 @@ export const SearchProvider = ({ children }: { children: ReactNode }) => {
       const { articles, page, error } = await getArticlesBySearch(
         debouncedSearchTerm
       );
-      if (articles) setArticles(articles);
-      if (page) setPage(page);
+      setArticles(articles);
+      setPage(page);
       SetError(error);
     };
     getArticles();

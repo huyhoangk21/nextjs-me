@@ -32,13 +32,7 @@ const articleQuery = {
   },
 };
 
-type Response = {
-  page?: Pagination;
-  articles: Article[];
-  error: boolean;
-};
-
-export const getArticles = async (): Promise<Response> => {
+export const getArticles = async () => {
   try {
     const query = qs.stringify(
       {
@@ -54,18 +48,24 @@ export const getArticles = async (): Promise<Response> => {
     const data = await res.json();
 
     if (data.errors || !data.data) {
-      return { error: true, articles: [] };
+      return {
+        error: true,
+        articles: [] as Article[],
+        page: data.meta as Pagination,
+      };
     }
 
     return { error: false, ...responseParser(data) };
   } catch {
-    return { error: true, articles: [] };
+    return {
+      error: true,
+      articles: [] as Article[],
+      page: {} as Pagination,
+    };
   }
 };
 
-export const getArticlesBySearch = async (
-  searchTerm: string
-): Promise<Response> => {
+export const getArticlesBySearch = async (searchTerm: string) => {
   try {
     const query = qs.stringify(
       {
@@ -100,16 +100,24 @@ export const getArticlesBySearch = async (
     const data = await res.json();
 
     if (data.errors || !data.data) {
-      return { error: true, articles: [] };
+      return {
+        error: true,
+        articles: [] as Article[],
+        page: data.meta as Pagination,
+      };
     }
 
     return { error: false, ...responseParser(data) };
   } catch {
-    return { error: true, articles: [] };
+    return {
+      error: true,
+      articles: [] as Article[],
+      page: {} as Pagination,
+    };
   }
 };
 
-export const getArticleBySlug = async (slug: string): Promise<Response> => {
+export const getArticleBySlug = async (slug: string) => {
   try {
     const query = qs.stringify(
       {
@@ -130,12 +138,20 @@ export const getArticleBySlug = async (slug: string): Promise<Response> => {
     const data = await res.json();
 
     if (data.errors || !data.data) {
-      return { error: true, articles: [] };
+      return {
+        error: true,
+        articles: [] as Article[],
+        page: data.meta as Pagination,
+      };
     }
 
     return { error: false, ...responseParser(data) };
   } catch {
-    return { error: true, articles: [] };
+    return {
+      error: true,
+      articles: [] as Article[],
+      page: {} as Pagination,
+    };
   }
 };
 
