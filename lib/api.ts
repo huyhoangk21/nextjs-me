@@ -48,6 +48,7 @@ export const getArticles = async () => {
     const data = await res.json();
 
     if (data.errors || !data.data) {
+      console.log(data.errors);
       return {
         error: true,
         articles: [] as Article[],
@@ -101,6 +102,7 @@ export const getArticlesBySearch = async (searchTerm: string) => {
     const data = await res.json();
 
     if (data.errors || !data.data) {
+      console.log(data.errors);
       return {
         error: true,
         articles: [] as Article[],
@@ -140,6 +142,7 @@ export const getArticleBySlug = async (slug: string) => {
     const data = await res.json();
 
     if (data.errors || !data.data) {
+      console.log(data.errors);
       return {
         error: true,
         articles: [] as Article[],
