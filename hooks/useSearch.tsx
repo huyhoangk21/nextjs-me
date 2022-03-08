@@ -15,7 +15,6 @@ type SearchContextType = {
   onSearchChange: (e: ChangeEvent<HTMLInputElement>) => void;
   articles: Article[];
   page: Pagination;
-  error: boolean;
 };
 
 const SearchContext = createContext<SearchContextType>(null!);
@@ -25,7 +24,6 @@ export const SearchProvider = ({ children }: { children: ReactNode }) => {
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState<string>('');
   const [articles, setArticles] = useState<Article[]>([]);
   const [page, setPage] = useState<Pagination>(null!);
-  const [error, SetError] = useState<boolean>(false);
 
   useEffect(() => {
     const debouncedTimer = setTimeout(
@@ -37,12 +35,9 @@ export const SearchProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     const getArticles = async () => {
-      const { articles, page, error } = await getArticlesBySearch(
-        debouncedSearchTerm
-      );
+      const { articles, page } = await getArticlesBySearch(debouncedSearchTerm);
       setArticles(articles);
       setPage(page);
-      SetError(error);
     };
     getArticles();
   }, [debouncedSearchTerm]);
@@ -56,7 +51,6 @@ export const SearchProvider = ({ children }: { children: ReactNode }) => {
     onSearchChange,
     articles,
     page,
-    error,
   };
 
   return (

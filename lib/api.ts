@@ -33,132 +33,78 @@ const articleQuery = {
 };
 
 export const getArticles = async () => {
-  try {
-    const query = qs.stringify(
-      {
-        ...articleQuery,
-      },
-      {
-        encodeValuesOnly: true,
-      }
-    );
-
-    const res = await fetch(`${baseUrl}/api/articles?${query}`);
-
-    const data = await res.json();
-
-    if (data.errors || !data.data) {
-      console.log(data.errors);
-      return {
-        error: true,
-        articles: [] as Article[],
-        page: data.meta as Pagination,
-      };
+  const query = qs.stringify(
+    {
+      ...articleQuery,
+    },
+    {
+      encodeValuesOnly: true,
     }
+  );
 
-    return { error: false, ...responseParser(data) };
-  } catch (err) {
-    console.log(err);
-    return {
-      error: true,
-      articles: [] as Article[],
-      page: {} as Pagination,
-    };
-  }
+  const res = await fetch(`${baseUrl}/api/articles?${query}`);
+
+  const data = await res.json();
+
+  return responseParser(data);
 };
 
 export const getArticlesBySearch = async (searchTerm: string) => {
-  try {
-    const query = qs.stringify(
-      {
-        ...articleQuery,
-        filters: {
-          $or: [
-            {
-              title: {
-                $containsi: searchTerm,
-              },
+  const query = qs.stringify(
+    {
+      ...articleQuery,
+      filters: {
+        $or: [
+          {
+            title: {
+              $containsi: searchTerm,
             },
-            {
-              topic: {
-                $containsi: searchTerm,
-              },
+          },
+          {
+            topic: {
+              $containsi: searchTerm,
             },
-            {
-              content: {
-                $containsi: searchTerm,
-              },
+          },
+          {
+            content: {
+              $containsi: searchTerm,
             },
-          ],
-        },
+          },
+        ],
       },
-      {
-        encodeValuesOnly: true,
-      }
-    );
-
-    const res = await fetch(`${baseUrl}/api/articles?${query}`);
-
-    const data = await res.json();
-
-    if (data.errors || !data.data) {
-      console.log(data.errors);
-      return {
-        error: true,
-        articles: [] as Article[],
-        page: data.meta as Pagination,
-      };
+    },
+    {
+      encodeValuesOnly: true,
     }
+  );
 
-    return { error: false, ...responseParser(data) };
-  } catch (err) {
-    console.log(err);
-    return {
-      error: true,
-      articles: [] as Article[],
-      page: {} as Pagination,
-    };
-  }
+  const res = await fetch(`${baseUrl}/api/articles?${query}`);
+
+  const data = await res.json();
+
+  return responseParser(data);
 };
 
 export const getArticleBySlug = async (slug: string) => {
-  try {
-    const query = qs.stringify(
-      {
-        ...articleQuery,
-        filters: {
-          slug: {
-            $eq: slug,
-          },
+  const query = qs.stringify(
+    {
+      ...articleQuery,
+      filters: {
+        slug: {
+          $eq: slug,
         },
       },
-      {
-        encodeValuesOnly: true,
-      }
-    );
-
-    const res = await fetch(`${baseUrl}/api/articles?${query}`);
-
-    const data = await res.json();
-
-    if (data.errors || !data.data) {
-      console.log(data.errors);
-      return {
-        error: true,
-        articles: [] as Article[],
-        page: data.meta as Pagination,
-      };
+    },
+    {
+      encodeValuesOnly: true,
     }
+  );
 
-    return { error: false, ...responseParser(data) };
-  } catch (err) {
-    console.log(err);
-    return {
-      error: true,
-      articles: [] as Article[],
-      page: {} as Pagination,
-    };
-  }
+  const res = await fetch(`${baseUrl}/api/articles?${query}`);
+
+  const data = await res.json();
+
+  return responseParser(data);
 };
 
 const articleMapper = (rawArticle: any): Article => {

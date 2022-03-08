@@ -8,24 +8,14 @@ import { useSearch } from '../../hooks/useSearch';
 import { getArticles } from '../../lib/api';
 import { Article } from '../../types/article';
 import { Pagination } from '../../types/pagination';
-import Custom500 from '../500';
 
 type BlogsType = {
   recentArticles: Article[];
   page: Pagination;
-  error: boolean;
 };
 
-const Blogs: NextPage<BlogsType> = ({ recentArticles, page, error }) => {
-  const {
-    articles: searchArticles,
-    searchTerm,
-    error: searchError,
-  } = useSearch();
-
-  // if (error || searchError) {
-  //   return <Custom500 />;
-  // }
+const Blogs: NextPage<BlogsType> = ({ recentArticles, page }) => {
+  const { articles: searchArticles, searchTerm } = useSearch();
 
   const articles = searchTerm.length !== 0 ? searchArticles : recentArticles;
 
@@ -61,13 +51,12 @@ const Blogs: NextPage<BlogsType> = ({ recentArticles, page, error }) => {
 export default Blogs;
 
 export const getStaticProps = async () => {
-  const { error, articles, page } = await getArticles();
+  const { articles, page } = await getArticles();
 
   return {
     props: {
       recentArticles: articles,
       page,
-      error,
     },
   };
 };

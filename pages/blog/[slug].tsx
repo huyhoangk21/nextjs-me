@@ -9,20 +9,14 @@ import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
 import { CgSpinner } from 'react-icons/cg';
-import Custom500 from '../500';
 
 type BlogTypeProps = {
-  articles: Article[];
-  content?: MDXRemoteSerializeResult;
-  error: boolean;
+  article: Article;
+  content: MDXRemoteSerializeResult;
 };
 
-const Blog = ({ articles, content, error }: BlogTypeProps) => {
+const Blog = ({ article, content }: BlogTypeProps) => {
   const router = useRouter();
-
-  if (error) {
-    return <Custom500 />;
-  }
 
   if (router.isFallback) {
     return (
@@ -31,8 +25,6 @@ const Blog = ({ articles, content, error }: BlogTypeProps) => {
       </div>
     );
   }
-
-  const article = articles[0];
 
   return (
     <Fragment>
@@ -59,7 +51,7 @@ const Blog = ({ articles, content, error }: BlogTypeProps) => {
         <div className='font-bold text-2xl sm:text-3xl mt-6 my-10 dark:text-gray-100'>
           {article.title}
         </div>
-        <Content content={content!} />
+        <Content content={content} />
       </div>
     </Fragment>
   );
@@ -68,11 +60,7 @@ const Blog = ({ articles, content, error }: BlogTypeProps) => {
 export default Blog;
 
 export const getStaticPaths = async () => {
-  const { articles, error } = await getArticles();
-
-  if (error) {
-    return { paths: [], fallback: true };
-  }
+  const { articles } = await getArticles();
 
   const paths = articles!.map(article => ({ params: { slug: article.slug } }));
 
@@ -84,16 +72,14 @@ export const getStaticProps = async ({
 }: {
   params: { slug: string };
 }) => {
-  const { articles, error } = await getArticleBySlug(params.slug);
+  const { articles } = await getArticleBySlug(params.slug);
 
-  const props: BlogTypeProps = { error, articles };
-
-  if (!error && articles.length > 0) {
-    const mdxSource = await serialize(articles[0].content);
-    props.content = mdxSource;
-  }
+  const mdxSource = await serialize(articles[0].content);
 
   return {
-    props,
+    props: {
+      article: articles[0],
+      content: mdxSource,
+    },
   };
 };
