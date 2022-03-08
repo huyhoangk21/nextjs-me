@@ -4,7 +4,7 @@ import { Author } from '../types/author';
 import { Pagination } from '../types/pagination';
 import { Picture } from '../types/picture';
 
-export const baseUrl = process.env.REACT_APP_BACKEND || 'http://localhost:1337';
+export const baseUrl = process.env.BACKEND || 'http://localhost:1337';
 
 const articleQuery = {
   fields: [
