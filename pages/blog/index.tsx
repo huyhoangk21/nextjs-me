@@ -23,9 +23,9 @@ const Blogs: NextPage<BlogsType> = ({ recentArticles, page, error }) => {
     error: searchError,
   } = useSearch();
 
-  if (error || searchError) {
-    return <Custom500 />;
-  }
+  // if (error || searchError) {
+  //   return <Custom500 />;
+  // }
 
   const articles = searchTerm.length !== 0 ? searchArticles : recentArticles;
 
