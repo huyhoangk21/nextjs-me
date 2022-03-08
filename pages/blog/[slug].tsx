@@ -33,7 +33,7 @@ const Blog = ({ article, content }: BlogTypeProps) => {
         <div className='flex gap-x-3 items-center'>
           <div className='rounded-image h-10 w-10'>
             <Image
-              src={`${baseUrl}${article.author.profilePicture.url}`}
+              src={article.author.profilePicture.url}
               alt={article.author.profilePicture.alternativeText}
               objectFit='cover'
               layout='fill'

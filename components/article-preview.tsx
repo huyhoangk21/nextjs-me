@@ -10,13 +10,12 @@ type ArticlePreviewProps = {
 };
 
 const ArticlePreview = ({ article }: ArticlePreviewProps) => {
-  console.log(article.picture.url);
   return (
     <div className='cursor-pointer border-t py-4 dark:border-t-slate-700'>
       <div className='flex items-center gap-x-3'>
         <div className='rounded-image h-8 w-8'>
           <Image
-            src={`${baseUrl}${article.author.profilePicture.url}`}
+            src={article.author.profilePicture.url}
             alt={article.author.profilePicture.alternativeText}
             objectFit='cover'
             layout='fill'
@@ -45,7 +44,7 @@ const ArticlePreview = ({ article }: ArticlePreviewProps) => {
         </div>
         <div className='relative basis-24 h-24 sm:basis-28 sm:h-28 flex-shrink-0 border dark:border-slate-700'>
           <Image
-            src={`${baseUrl}${article.picture.url}`}
+            src={article.picture.url}
             alt={article.picture.alternativeText}
             objectFit='cover'
             layout='fill'
