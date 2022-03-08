@@ -9,14 +9,20 @@ import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
 import { CgSpinner } from 'react-icons/cg';
+import Custom500 from '../500';
 
 type BlogTypeProps = {
-  article: Article;
-  content: MDXRemoteSerializeResult;
+  article?: Article;
+  content?: MDXRemoteSerializeResult;
+  error: boolean;
 };
 
-const Blog = ({ article, content }: BlogTypeProps) => {
+const Blog = ({ article, content, error }: BlogTypeProps) => {
   const router = useRouter();
+
+  if (error) {
+    return <Custom500 />;
+  }
 
   if (router.isFallback) {
     return (
@@ -28,30 +34,30 @@ const Blog = ({ article, content }: BlogTypeProps) => {
 
   return (
     <Fragment>
-      <NextSeo title={article.title} description={article.excerpt} />
+      <NextSeo title={article!.title} description={article!.excerpt} />
       <div className='dark:text-gray-400 pt-4 pb-10'>
         <div className='flex gap-x-3 items-center'>
           <div className='rounded-image h-10 w-10'>
             <Image
-              src={`http://localhost:1337${article.author.profilePicture.url}`}
-              alt={article.author.profilePicture.alternativeText}
+              src={`http://localhost:1337${article!.author.profilePicture.url}`}
+              alt={article!.author.profilePicture.alternativeText}
               objectFit='cover'
               layout='fill'
             />
           </div>
           <div>
             <div className='dark:text-gray-100 font-bold'>
-              {article.author.name}
+              {article!.author.name}
             </div>
             <div className='text-slate-500 text-sm'>
-              <Time>{article.createdAt}</Time>
+              <Time>{article!.createdAt}</Time>
             </div>
           </div>
         </div>
         <div className='font-bold text-2xl sm:text-3xl mt-6 my-10 dark:text-gray-100'>
-          {article.title}
+          {article!.title}
         </div>
-        <Content content={content} />
+        <Content content={content!} />
       </div>
     </Fragment>
   );
@@ -60,8 +66,13 @@ const Blog = ({ article, content }: BlogTypeProps) => {
 export default Blog;
 
 export const getStaticPaths = async () => {
-  const { articles } = await getArticles();
-  const paths = articles.map(article => ({ params: { slug: article.slug } }));
+  const { articles, error } = await getArticles();
+
+  if (error) {
+    return {};
+  }
+
+  const paths = articles!.map(article => ({ params: { slug: article.slug } }));
 
   return { paths, fallback: true };
 };
@@ -71,14 +82,17 @@ export const getStaticProps = async ({
 }: {
   params: { slug: string };
 }) => {
-  const { articles } = await getArticleBySlug(params.slug);
+  const { articles, error } = await getArticleBySlug(params.slug);
 
-  const mdxSource = await serialize(articles[0].content);
+  const props: BlogTypeProps = { error };
+
+  if (!error && articles) {
+    const mdxSource = await serialize(articles[0].content);
+    props.content = mdxSource;
+    props.article = articles[0];
+  }
 
   return {
-    props: {
-      article: articles[0],
-      content: mdxSource,
-    },
+    props,
   };
 };

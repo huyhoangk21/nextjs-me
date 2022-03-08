@@ -32,79 +32,111 @@ const articleQuery = {
   },
 };
 
-export const getArticles = async () => {
-  const query = qs.stringify(
-    {
-      ...articleQuery,
-    },
-    {
-      encodeValuesOnly: true,
-    }
-  );
-
-  const res = await fetch(`${baseUrl}/api/articles?${query}`);
-
-  const data = await res.json();
-
-  return responseParser(data);
+type Response = {
+  page?: Pagination;
+  articles?: Article[];
+  error: boolean;
 };
 
-export const getArticlesBySearch = async (searchTerm: string) => {
-  const query = qs.stringify(
-    {
-      ...articleQuery,
-      filters: {
-        $or: [
-          {
-            title: {
-              $containsi: searchTerm,
-            },
-          },
-          {
-            topic: {
-              $containsi: searchTerm,
-            },
-          },
-          {
-            content: {
-              $containsi: searchTerm,
-            },
-          },
-        ],
+export const getArticles = async (): Promise<Response> => {
+  try {
+    const query = qs.stringify(
+      {
+        ...articleQuery,
       },
-    },
-    {
-      encodeValuesOnly: true,
+      {
+        encodeValuesOnly: true,
+      }
+    );
+
+    const res = await fetch(`${baseUrl}/api/articles?${query}`);
+
+    const data = await res.json();
+
+    if (data.errors || !data.data) {
+      return { error: true };
     }
-  );
 
-  const res = await fetch(`${baseUrl}/api/articles?${query}`);
-
-  const data = await res.json();
-
-  return responseParser(data);
+    return { error: false, ...responseParser(data) };
+  } catch {
+    return { error: true };
+  }
 };
 
-export const getArticleBySlug = async (slug: string) => {
-  const query = qs.stringify(
-    {
-      ...articleQuery,
-      filters: {
-        slug: {
-          $eq: slug,
+export const getArticlesBySearch = async (
+  searchTerm: string
+): Promise<Response> => {
+  try {
+    const query = qs.stringify(
+      {
+        ...articleQuery,
+        filters: {
+          $or: [
+            {
+              title: {
+                $containsi: searchTerm,
+              },
+            },
+            {
+              topic: {
+                $containsi: searchTerm,
+              },
+            },
+            {
+              content: {
+                $containsi: searchTerm,
+              },
+            },
+          ],
         },
       },
-    },
-    {
-      encodeValuesOnly: true,
+      {
+        encodeValuesOnly: true,
+      }
+    );
+
+    const res = await fetch(`${baseUrl}/api/articles?${query}`);
+
+    const data = await res.json();
+
+    if (data.errors || !data.data) {
+      return { error: true };
     }
-  );
 
-  const res = await fetch(`${baseUrl}/api/articles?${query}`);
+    return { error: false, ...responseParser(data) };
+  } catch {
+    return { error: true };
+  }
+};
 
-  const data = await res.json();
+export const getArticleBySlug = async (slug: string): Promise<Response> => {
+  try {
+    const query = qs.stringify(
+      {
+        ...articleQuery,
+        filters: {
+          slug: {
+            $eq: slug,
+          },
+        },
+      },
+      {
+        encodeValuesOnly: true,
+      }
+    );
 
-  return responseParser(data);
+    const res = await fetch(`${baseUrl}/api/articles?${query}`);
+
+    const data = await res.json();
+
+    if (data.errors || !data.data) {
+      return { error: true };
+    }
+
+    return { error: false, ...responseParser(data) };
+  } catch {
+    return { error: true };
+  }
 };
 
 const articleMapper = (rawArticle: any): Article => {
