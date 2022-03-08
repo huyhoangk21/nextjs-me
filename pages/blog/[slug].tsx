@@ -69,7 +69,7 @@ export const getStaticPaths = async () => {
   const { articles, error } = await getArticles();
 
   if (error) {
-    return {};
+    return { paths: [], fallback: true };
   }
 
   const paths = articles!.map(article => ({ params: { slug: article.slug } }));
