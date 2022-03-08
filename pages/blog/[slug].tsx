@@ -86,7 +86,7 @@ export const getStaticProps = async ({
 
   const props: BlogTypeProps = { error };
 
-  if (!error && articles) {
+  if (!error && articles.length > 0) {
     const mdxSource = await serialize(articles[0].content);
     props.content = mdxSource;
     props.article = articles[0];

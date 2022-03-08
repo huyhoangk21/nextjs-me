@@ -34,7 +34,7 @@ const articleQuery = {
 
 type Response = {
   page?: Pagination;
-  articles?: Article[];
+  articles: Article[];
   error: boolean;
 };
 
@@ -59,7 +59,7 @@ export const getArticles = async (): Promise<Response> => {
 
     return { error: false, ...responseParser(data) };
   } catch {
-    return { error: true };
+    return { error: true, articles: [] };
   }
 };
 
@@ -100,12 +100,12 @@ export const getArticlesBySearch = async (
     const data = await res.json();
 
     if (data.errors || !data.data) {
-      return { error: true };
+      return { error: true, articles: [] };
     }
 
     return { error: false, ...responseParser(data) };
   } catch {
-    return { error: true };
+    return { error: true, articles: [] };
   }
 };
 
@@ -130,12 +130,12 @@ export const getArticleBySlug = async (slug: string): Promise<Response> => {
     const data = await res.json();
 
     if (data.errors || !data.data) {
-      return { error: true };
+      return { error: true, articles: [] };
     }
 
     return { error: false, ...responseParser(data) };
   } catch {
-    return { error: true };
+    return { error: true, articles: [] };
   }
 };
 
