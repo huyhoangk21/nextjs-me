@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import Image from 'next/image';
-import { getArticleBySlug, getArticles } from '../../lib/api';
+import { baseUrl, getArticleBySlug, getArticles } from '../../lib/api';
 import { Article } from '../../types/article';
 import Time from '../../components/time';
 import { serialize } from 'next-mdx-remote/serialize';
@@ -39,7 +39,7 @@ const Blog = ({ article, content, error }: BlogTypeProps) => {
         <div className='flex gap-x-3 items-center'>
           <div className='rounded-image h-10 w-10'>
             <Image
-              src={`http://localhost:1337${article!.author.profilePicture.url}`}
+              src={`${baseUrl}${article!.author.profilePicture.url}`}
               alt={article!.author.profilePicture.alternativeText}
               objectFit='cover'
               layout='fill'
