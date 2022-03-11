@@ -31,7 +31,7 @@ const Blog = ({ article, content }: BlogTypeProps) => {
       <NextSeo title={article.title} description={article.excerpt} />
       <div className='dark:text-gray-400 pt-4 pb-10'>
         <div className='flex gap-x-3 items-center'>
-          <div className='rounded-image h-10 w-10'>
+          <div className='relative rounded-full overflow-hidden h-10 w-10'>
             <Image
               src={article.author.profilePicture.url}
               alt={article.author.profilePicture.alternativeText}

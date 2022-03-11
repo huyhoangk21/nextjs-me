@@ -4,7 +4,7 @@ import { Author } from '../types/author';
 import { Pagination } from '../types/pagination';
 import { Picture } from '../types/picture';
 
-export const baseUrl = process.env.BACKEND || 'http://localhost:1337';
+export const baseUrl = process.env.BACKEND;
 
 const articleQuery = {
   fields: [
@@ -45,8 +45,6 @@ export const getArticles = async () => {
   const res = await fetch(`${baseUrl}/api/articles?${query}`);
 
   const data = await res.json();
-
-  console.log(data);
 
   return responseParser(data);
 };

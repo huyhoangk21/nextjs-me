@@ -13,7 +13,7 @@ const ArticlePreview = ({ article }: ArticlePreviewProps) => {
   return (
     <div className='cursor-pointer border-t py-4 dark:border-t-slate-700'>
       <div className='flex items-center gap-x-3'>
-        <div className='rounded-image h-8 w-8'>
+        <div className='h-8 w-8 relative rounded-full overflow-hidden'>
           <Image
             src={article.author.profilePicture.url}
             alt={article.author.profilePicture.alternativeText}

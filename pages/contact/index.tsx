@@ -21,7 +21,7 @@ const Contact = () => {
               <AiOutlineGithub className='hover:text-blue-500 cursor-pointer' />
             </a>
           </Link>
-          <Link href='https://twitter.com/hoangple21' passHref>
+          {/* <Link href='https://twitter.com/hoangple21' passHref>
             <a target='_blank'>
               <AiOutlineTwitter className='hover:text-blue-500 cursor-pointer' />
             </a>
@@ -30,7 +30,7 @@ const Contact = () => {
             <a target='_blank'>
               <AiOutlineLinkedin className='hover:text-blue-500 cursor-pointer' />
             </a>
-          </Link>
+          </Link> */}
         </div>
       </div>
     </Fragment>
