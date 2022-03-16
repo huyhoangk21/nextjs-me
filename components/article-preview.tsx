@@ -42,7 +42,7 @@ const ArticlePreview = ({ article }: ArticlePreviewProps) => {
             {article.topic}
           </div>
         </div>
-        <div className='relative basis-24 h-24 sm:basis-28 sm:h-28 flex-shrink-0 border dark:border-slate-700'>
+        <div className='relative basis-24 h-24 bg-white sm:basis-28 sm:h-28 flex-shrink-0 border dark:border-slate-700'>
           <Image
             src={article.picture.url}
             alt={article.picture.alternativeText}
